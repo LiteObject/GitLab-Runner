@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  gitlab-runner:
+    image: 'gitlab/gitlab-runner:latest'
+    container_name: gitlab-runner
+    volumes:
+      - /srv/gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    
+  mysqldb:
+    image: mysql:latest
+    container_name: mysqldb-server
+    ports:
+      - 3306:3306
+    # making data persistent. To remove: $ docker-compose down -v
+    #volumes:
+    #  - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=testuser
+      - MYSQL_DATABASE=testdatabase
+
+volumes:
+  db_data: {}
