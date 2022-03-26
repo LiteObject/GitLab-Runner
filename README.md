@@ -1,4 +1,4 @@
-## How to Setup GitLab Runner Locally
+## How to Setup GitLab Runner Locally For .NET Applications
 - Run gitlab-runner in docker container
   - $ `docker-compose up -d`  
 - Go inside the container to run bash command
